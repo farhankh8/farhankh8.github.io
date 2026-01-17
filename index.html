@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KH Mohammad Farhan - Portfolio</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #6366f1, #a855f7);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #4f46e5, #9333ea);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(to right, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #9ca3af;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #8b5cf6;
+            color: #a78bfa;
+        }
+
+        .btn-outline:hover {
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        /* About Section */
+        .about-content {
+            line-height: 1.8;
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+        }
+
+        .about-content span {
+            font-weight: 700;
+            color: #a78bfa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05) rotateY(5deg);
+        }
+
+        .stat-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #60a5fa;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4));
+        }
+
+        /* Projects Section */
+        .project-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9));
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 2rem;
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features li {
+            padding: 0.5rem 0;
+            color: #d1d5db;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .project-features li::before {
+            content: '▸';
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        /* Certifications Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.7));
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-5px) scale(1.03);
+        }
+
+        .cert-card h3 {
+            color: #60a5fa;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 0.4rem 0;
+            color: #d1d5db;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .cert-list li::before {
+            content: '✓';
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-card {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-card h3 {
+            font-size: 1.75rem;
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .institution {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .location {
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .duration {
+            color: #60a5fa;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-areas {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .focus-areas li {
+            padding: 0.5rem 0;
+            color: #d1d5db;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .focus-areas li::before {
+            content: '▸';
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: #60a5fa;
+        }
+
+        .contact-info h4 {
+            color: #60a5fa;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-info p {
+            color: #d1d5db;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(75, 85, 99, 0.3);
+        }
+
+        footer p {
+            color: #9ca3af;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .stats-grid,
+            .skills-grid,
+            .cert-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2));
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            color: #10b981;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>KH MOHAMMAD FARHAN</h1>
+            <h2>AI & ML Engineer | Full-Stack Developer | Data Analyst</h2>
+            <p>Final-year BCA student specializing in Artificial Intelligence, Cloud Computing, and DevOps</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
+                <a href="#projects" class="btn btn-outline">
+                    <i class="fas fa-code"></i> View Projects
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="font-size: 2rem; color: #9ca3af;"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">About Me</h2>
+        <div class="card about-content">
+            <p>
+                I'm a passionate <span>AI & Machine Learning enthusiast</span> currently pursuing my Bachelor's in Computer Applications at Yenepoya University, Mangaluru. With a specialization in Artificial Intelligence, Cloud Computing, and DevOps, I bring a unique blend of theoretical knowledge and practical expertise.
+            </p>
+            <p>
+                My journey in tech has been enriched by <span>12+ industry-recognized certifications</span> from leading companies like Google, IBM, Microsoft, AWS, and Deloitte. I've developed hands-on experience in building web applications, REST APIs, and AI-driven solutions.
+            </p>
+            <p>
+                I'm a <span>self-motivated learner</span> with strong problem-solving abilities, always eager to explore emerging technologies like Generative AI, prompt engineering, and cloud-native systems. Currently seeking entry-level opportunities or internships where I can contribute to innovative projects and continue growing my technical expertise.
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-award" style="color: #60a5fa;"></i>
+                <span class="stat-number">12+</span>
+                <p>Industry Certifications</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-code" style="color: #a78bfa;"></i>
+                <span class="stat-number">3+</span>
+                <p>Years of Learning</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-brain" style="color: #ec4899;"></i>
+                <span class="stat-number">AI/ML</span>
+                <p>Specialization Focus</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Generative AI Engineering</span>
+                    <span class="skill-tag">Machine Learning Fundamentals</span>
+                    <span class="skill-tag">Natural Language Processing</span>
+                    <span class="skill-tag">TensorFlow Basics</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                    <span class="skill-tag">AI Tool Integration</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Web Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5 & CSS3</span>
+                    <span class="skill-tag">JavaScript (ES6+)</span>
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Flask Backend</span>
+                    <span class="skill-tag">REST API Development</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> Data Analytics</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python Programming</span>
+                    <span class="skill-tag">Pandas & NumPy</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Data Analysis</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS (EC2, S3)</span>
+                    <span class="skill-tag">Docker Basics</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">CI/CD Concepts</span>
+                    <span class="skill-tag">Automation</span>
+                    <span class="skill-tag">Cloud Computing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+<section id="projects" class="fade-in">
+    <h2 class="section-title">Featured Project</h2>
+    <div class="project-card">
+        <h3>TripGenius - Smart Travel Planner</h3>
+        <p>A responsive web application that generates personalized, day-wise travel itineraries based on user preferences, budget, and destination.</p>
+        
+        <h4 style="color: #60a5fa; margin-bottom: 1rem; font-size: 1.3rem;">Key Features:</h4>
+        <ul class="project-features">
+            <li>Rule-based recommendation system</li>
+            <li>Responsive UI for all devices</li>
+            <li>Dynamic content rendering</li>
+            <li>Client-side form validation</li>
+        </ul>
+
+        <h4 style="color: #60a5fa; margin-bottom: 1rem; font-size: 1.3rem;">Technologies:</h4>
+        <div class="tech-stack">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">Git</span>
+        </div>
+
+        <p style="color:#9ca3af; font-size:0.95rem; margin-top:1.5rem;">
+            <strong>Why this project stands out:</strong> Unlike basic travel websites, TripGenius focuses on personalized trip planning using user inputs such as budget, duration, and destination. The project demonstrates practical problem-solving skills, logical thinking, and the ability to convert real-world travel planning challenges into a functional web solution with a clean and responsive user experience.
+        </p>
+
+        <a href="https://github.com/farhankh8/tripgenius" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> View on GitHub <i class="fas fa-external-link-alt"></i>
+        </a>
+    </div>
+</section>
+
+
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="fade-in">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Google</h3>
+                <ul class="cert-list">
+                    <li>Data Analytics Professional</li>
+                    <li>Advanced Data Analytics</li>
+                    <li>IT Automation with Python</li>
+                    <li>Project Management</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> IBM</h3>
+                <ul class="cert-list">
+                    <li>Generative AI Engineering</li>
+                    <li>Front-End Developer Professional Certificate</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Microsoft</h3>
+                <ul class="cert-list">
+                    <li>AI & Machine Learning Engineering</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> AWS</h3>
+                <ul class="cert-list">
+                    <li>Solutions Architecture Job Simulation</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Accenture</h3>
+                <ul class="cert-list">
+                    <li>Technology Consulting Job Simulation</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Deloitte</h3>
+                <ul class="cert-list">
+                    <li>Technology Job Simulation</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Tata</h3>
+                <ul class="cert-list">
+                    <li>GenAI Powered Data Analytics</li>
+                    <li>Data Visualization</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> TCS</h3>
+                <ul class="cert-list">
+                    <li>DevOps Engineering (TCS iON)</li>
+                </ul>
+            </div>
+
+            <div class="cert-card">
+                <h3><i class="fas fa-award"></i> Edureka</h3>
+                <ul class="cert-list">
+                    <li>Natural Language Processing Essentials</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="fade-in">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card">
+            <h3>Bachelor of Computer Applications (BCA)</h3>
+            <p class="institution">Yenepoya Institute of Arts, Science, Commerce & Management</p>
+            <p class="location">Yenepoya University, Mangaluru, Karnataka</p>
+            <p class="duration">2023 - 2026</p>
+
+            <h4 style="color: #60a5fa; font-size: 1.2rem; margin-bottom: 0.5rem;">Specialization:</h4>
+            <p style="color: #d1d5db; margin-bottom: 1rem;">Artificial Intelligence, Cloud Computing, and DevOps</p>
+
+            <h4 style="color: #60a5fa; font-size: 1.2rem; margin-bottom: 0.5rem;">Key Focus Areas:</h4>
+            <ul class="focus-areas">
+                <li>Machine Learning & AI Model Development</li>
+                <li>Cloud-Native Systems & Infrastructure</li>
+                <li>Python Automation & REST API Development</li>
+                <li>Data Analytics & Visualization</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        
+        <div class="contact-grid">
+            <a href="mailto:khmohammadfarhan@gmail.com" class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-info">
+                    <h4>Email</h4>
+                    <p>khmohammadfarhan@gmail.com</p>
+                </div>
+            </a>
+
+            <a href="tel:+919108386969" class="contact-card">
+                <i class="fas fa-phone"></i>
+                <div class="contact-info">
+                    <h4>Phone</h4>
+                    <p>+91-9108386969</p>
+                </div>
+            </a>
+
+            <a href="https://linkedin.com/in/khmohammadfarhan" target="_blank" class="contact-card">
+                <i class="fab fa-linkedin"></i>
+                <div class="contact-info">
+                    <h4>LinkedIn</h4>
+                    <p>khmohammadfarhan</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/farhankh8" target="_blank" class="contact-card">
+                <i class="fab fa-github"></i>
+                <div class="contact-info">
+                    <h4>GitHub</h4>
+                    <p>farhankh8</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="contact-form">
+            <h3 style="color: #d1d5db; margin-bottom: 0.5rem; font-size: 1.5rem;">Send Me a Message</h3>
+            <p style="color: #9ca3af; margin-bottom: 2rem;">I'll get back to you as soon as possible</p>
+            
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i> Message sent successfully! I'll get back to you soon.
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 KH Mohammad Farhan. All rights reserved.</p>
+        <p>Final-Year BCA Student | Mangaluru, Karnataka, India</p>
+        <p>Immediately available for internships and entry-level positions (Onsite/Remote)</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+
+            // Reset form
+            this.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            // In a real application, you would send this data to a server
+            console.log('Form submitted:', formData);
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / 500);
+            }
+        });
+    </script>
+
+</body>
+</html>
